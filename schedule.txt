@@ -1,0 +1,8 @@
+modify the schedule py
+math 373
+do soduke
+read 291textbook
+buy food in safe_on_food
+do exercise
+watch SQL vedio at noght
+q

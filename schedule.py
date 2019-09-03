@@ -21,7 +21,9 @@ class Stack:
 
 class schedule:
     def enterschdule():
+        k = 1
         while True:
+
             s = input('do you want to study today?(y/n):')
             if s.lower() == 'y':
                 schedule.setschdule()
@@ -34,35 +36,44 @@ class schedule:
 
 
     def setschdule():
-            while True:
+            change = True
+            decision = 0
+            while decision==0:
                 s2 = input('Do you want to change secdule right now?(y/n):')
-                if s2.lower() == 'y':
-                    f = open('schedule.txt','w')
-                    work1 = input('please enter mission1:')
-                    work2 = input('please enter mission2:')
-                    work3 = input('please enter mission3:')
-                    work4 = input('please enter mission4:')
-                    work5 = input('please enter mission5:')
-
-
-                    f.write("mission1 is: "+ work1 + "\n" )
-                    f.write("mission2 is: "+ work2 + "\n")
-                    f.write("mission3 is: "+ work3 + "\n")
-                    f.write("mission4 is: "+ work4 + "\n")
-                    f.write("mission5 is: "+ work5 + "\n")
-                    f.close()
-                    print('schedule has updated')
-
-                elif s2.lower() == 'n':
-                    f = open('schedule.txt','r')
-                    print('Today missions are following below: ')
-                    content = f.read()
-                    print(content)
-                    break
-
+                if s2.lower() == 'n':
+                    change = False
+                    decision +=1
+                elif s2.lower() == 'y':
+                    decision += 1
                 else:
                     print('wrong order, please enter y or n!')
                     continue
+
+            if change==True:
+                i=0
+                works = list()
+                f = open('schedule.txt','w')
+                for i in range(0,99):
+                    w = input('please enter mission'+str(i)+' or enter q to quit: ')
+                    works.append(w)
+
+                    if works[i].lower() == 'q':
+                        break
+
+                print(*works, sep = "\n")
+                # i=0
+                f.writelines(["%s\n" % work  for work in works])
+                f.close()
+                print('schedule has updated')
+
+            else:
+                f = open('schedule.txt','r')
+                print('Today missions are following below: ')
+                content = f.read()
+                print(content)
+
+
+
 def main():
     i = input('please press enter to start the program')
     schedule.enterschdule()
